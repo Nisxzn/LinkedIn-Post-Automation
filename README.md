@@ -37,62 +37,45 @@ A professional, AI-powered system designed to automate LinkedIn content creation
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start Guide: How to Use
 
-### 📦 Prerequisites
-- Python 3.9+
-- Node.js & npm (for frontend)
-- LinkedIn Developer API credentials
-- OpenAI API Key
+The LinkedIn Post Automation system is designed for high efficiency. Here's how to go from a blank page to a viral post in minutes.
 
-### 🛠 Backend Setup
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Nisxzn/LinkedIn-Post-Automation.git
-   cd LinkedIn-Post-Automation
-   ```
+![App Dashboard Mockup](./assets/demo_mockup.png)
+*(A professional dashboard view with AI insights and scheduling controls)*
 
-2. **Create a virtual environment**:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+### 1️⃣ Connect Your Profile
+Click the **"Connect LinkedIn"** button on the landing page. This uses secure OAuth2 to safely link your account for automated posting.
 
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 2️⃣ Generate Content with AI
+Navigate to the **AI Workspace**. You can:
+- **Input a Topic**: e.g., "The future of AI in 2024".
+- **Paste a News URL**: Our bot will summarize and craft a compelling LinkedIn post based on the latest trends.
+- **Choose Your Tone**: Select from "Professional", "Casual", or "Inspirational".
 
-4. **Configure environment variables**:
-   Create a `.env` file in the root directory:
-   ```env
-   OPENAI_API_KEY=your_openai_key
-   LINKEDIN_CLIENT_ID=your_id
-   LINKEDIN_CLIENT_SECRET=your_secret
-   DATABASE_URL=sqlite:///./app.db
-   SECRET_KEY=your_secret_key
-   ```
+### 3️⃣ Review & Refine
+The AI will generate a draft including optimized hashtags. Use the **Live Editor** to tweak any details or add your own personal touch.
 
-5. **Run the server**:
-   ```bash
-   uvicorn main:app --reload
-   ```
+### 4️⃣ Schedule or Post Now
+Once satisfied, click:
+- **"Post Now"**: To send the update immediately.
+- **"Schedule"**: To queue the post for an optimal time (e.g., Tuesday at 9:00 AM) based on engagement patterns.
 
-### 🎨 Frontend Setup
-1. **Navigate to the frontend folder**:
-   ```bash
-   cd frontend
-   ```
+### 5️⃣ Monitor Performance
+Check the **Analytics Dashboard** to see real-time updates on:
+- **Profile Impressions**
+- **Engagement Rate**
+- **Comment Sentiment Analysis**
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+---
 
-3. **Start the development server**:
-   ```bash
-   npm run dev
-   ```
+## 🛠 For Developers: Installation
+
+If you'd like to run this locally for development, follow these steps:
+
+1. **Backend**: Install Python packages from `requirements.txt` and run `uvicorn main:app --reload`.
+2. **Frontend**: Install dependencies in the `frontend` directory and run `npm run dev`.
+3. **Config**: Ensure your `.env` is set up with valid LinkedIn and OpenAI API keys.
 
 ---
 
