@@ -1,0 +1,21 @@
+fastapi
+uvicorn
+sqlalchemy
+requests
+apscheduler
+python-dotenv
+pydantic
+
+# Auth
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1
+
+# HTTP client for LinkedIn API
+httpx
+
+# LangGraph AI pipeline
+langgraph
+langchain
+langchain-openai
+langchain-core
