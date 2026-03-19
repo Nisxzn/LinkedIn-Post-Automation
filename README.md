@@ -118,5 +118,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ for professional automation.</sub>
+  <sub>Built with ❤️ by nisxzn.</sub>
 </div>
