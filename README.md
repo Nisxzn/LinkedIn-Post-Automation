@@ -1,4 +1,6 @@
+<div align="center">
 # 🚀 LinkedIn Post Automation
+</div>
 
 A professional, AI-powered system designed to automate LinkedIn content creation and scheduling. This project combines modern AI pipelines with a robust backend and a sleek frontend to streamline your professional presence on LinkedIn.
 
