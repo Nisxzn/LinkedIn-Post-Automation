@@ -45,9 +45,6 @@ A professional, AI-powered system designed to automate LinkedIn content creation
 
 The LinkedIn Post Automation system is designed for high efficiency. Here's how to go from a blank page to a viral post in minutes.
 
-![App Dashboard Mockup](./assets/demo_mockup.png)
-*(A professional dashboard view with AI insights and scheduling controls)*
-
 ### 1️⃣ Connect Your Profile
 Click the **"Connect LinkedIn"** button on the landing page. This uses secure OAuth2 to safely link your account for automated posting.
 
