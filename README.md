@@ -1,6 +1,6 @@
 <div align="center">
   
-<h1> LinkedIn Post Automation </h1>
+<h1> LinkedIn Post Automation Agent </h1>
 
 </div>
 
