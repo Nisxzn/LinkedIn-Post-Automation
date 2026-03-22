@@ -102,5 +102,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by nisxzn.</sub>
+  <sub>Built with ❤️ by nithish.</sub>
 </div>
