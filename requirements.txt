@@ -5,6 +5,7 @@ requests
 apscheduler
 python-dotenv
 pydantic
+email-validator
 
 # Auth
 python-jose[cryptography]
