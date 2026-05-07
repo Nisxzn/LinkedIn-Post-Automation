@@ -80,6 +80,18 @@ If you'd like to run this locally for development, follow these steps:
 
 ---
 
+## 📚 Documentation
+
+Detailed documentation for various aspects of the project:
+
+- [🏗 System Architecture](./docs/ARCHITECTURE.md) - Deep dive into the AI engine and backend structure.
+- [⚙️ Setup Guide](./docs/SETUP.md) - Step-by-step instructions for local development.
+- [📄 Privacy Policy](./docs/PRIVACY.md) - How we handle user data and LinkedIn integration.
+- [⚖️ Terms of Service](./docs/TERMS.md) - Rules and responsibilities for using the platform.
+- [🛡 Security Policy](./docs/SECURITY.md) - Details on our encryption and authentication standards.
+
+---
+
 ## 📂 Project Structure
 
 ```text

@@ -8,6 +8,7 @@ import GeneratePost from './pages/GeneratePost'
 import Scheduler from './pages/Scheduler'
 import Analytics from './pages/Analytics'
 import Settings from './pages/Settings'
+import LegalPage from './pages/LegalPage'
 import LinkedInCallback from './pages/LinkedInCallback'
 import DashboardLayout from './components/layout/DashboardLayout'
 
@@ -31,6 +32,9 @@ function App() {
           {/* Public routes */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/privacy" element={<LegalPage />} />
+          <Route path="/terms" element={<LegalPage />} />
+          <Route path="/security" element={<LegalPage />} />
 
           {/* LinkedIn OAuth callback */}
           <Route

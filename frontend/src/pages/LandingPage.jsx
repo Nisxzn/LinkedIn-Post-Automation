@@ -174,8 +174,8 @@ export default function LandingPage() {
                         <div>
                             <h4 style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#0F172A', marginBottom: 16 }}>Product</h4>
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
-                                {['Generator', 'Schedule', 'Analytics'].map(link => (
-                                    <li key={link}><a href="#" style={{ color: '#64748B', textDecoration: 'none', fontSize: '0.85rem', transition: 'color 0.2s' }}>{link}</a></li>
+                                {['Generator', 'Schedule', 'Analytics'].map(item => (
+                                    <li key={item} style={{ color: '#94A3B8', fontSize: '0.85rem', cursor: 'default' }}>{item}</li>
                                 ))}
                             </ul>
                         </div>
@@ -183,8 +183,20 @@ export default function LandingPage() {
                         <div>
                             <h4 style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#0F172A', marginBottom: 16 }}>Legal</h4>
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
-                                {['Privacy', 'Terms', 'Security'].map(link => (
-                                    <li key={link}><a href="#" style={{ color: '#64748B', textDecoration: 'none', fontSize: '0.85rem', transition: 'color 0.2s' }}>{link}</a></li>
+                                {[
+                                    { name: 'Privacy', path: '/privacy' },
+                                    { name: 'Terms', path: '/terms' },
+                                    { name: 'Security', path: '/security' }
+                                ].map(item => (
+                                    <li key={item.name}>
+                                        <a 
+                                            href={item.path}
+                                            onClick={(e) => { e.preventDefault(); navigate(item.path); }}
+                                            style={{ color: '#64748B', textDecoration: 'none', fontSize: '0.85rem', transition: 'color 0.2s' }}
+                                        >
+                                            {item.name}
+                                        </a>
+                                    </li>
                                 ))}
                             </ul>
                         </div>
