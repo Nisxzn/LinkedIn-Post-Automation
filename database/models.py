@@ -1,6 +1,7 @@
 
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, Text
 from datetime import datetime
+# pyrefly: ignore [missing-import]
 from .database import Base
 
 

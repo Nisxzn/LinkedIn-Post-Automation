@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { Sparkles, RefreshCw, Save, CalendarDays, Copy, Check, Send, Linkedin } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Sparkles, RefreshCw, Save, CalendarDays, Copy, Check, Send } from 'lucide-react'
+import LinkedInIcon from '../components/common/LinkedInIcon'
 import api from '../api/axios'
 import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
@@ -13,9 +14,20 @@ export default function GeneratePost() {
     const [posting, setPosting] = useState(false)
     const [copied, setCopied] = useState(false)
     const [postId, setPostId] = useState(null)
+    const { updateUser } = useAuth()
 
     // LinkedIn connection status from auth context (real data from login response)
-    const linkedinConnected = user?.linkedin_connected ?? false
+    const [linkedinConnected, setLinkedinConnected] = useState(user?.linkedin_connected ?? false)
+
+    // Sync latest LinkedIn connection status from backend on page mount
+    useEffect(() => {
+        api.get('/linkedin/status')
+            .then(({ data }) => {
+                setLinkedinConnected(data.connected)
+                updateUser({ linkedin_connected: data.connected })
+            })
+            .catch(() => {})
+    }, [updateUser])
 
     const generatePost = async () => {
         if (!topic.trim()) { toast.error('Please enter a topic'); return }
@@ -87,7 +99,7 @@ export default function GeneratePost() {
             {/* Input Card */}
             <div className="card" style={{ padding: '28px 28px' }}>
                 <div style={{ marginBottom: 20 }}>
-                    <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1.15rem', color: '#0F172A', marginBottom: 6 }}>
+                    <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1.15rem', color: '#0F172A', marginBottom: 6 }}>
                         Generate a LinkedIn Post
                     </h2>
                     <p style={{ color: '#64748B', fontSize: '0.875rem' }}>
@@ -111,16 +123,16 @@ export default function GeneratePost() {
                 <div style={{ display: 'flex', gap: 12, marginTop: 20, flexWrap: 'wrap' }}>
                     <button id="generate-btn" className="btn-primary" onClick={generatePost} disabled={loading}
                         style={{ opacity: loading ? 0.75 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
-                        {loading ? (
+                        {loading && (
                             <RefreshCw size={16} style={{ animation: 'spin 0.8s linear infinite' }} />
-                        ) : <Sparkles size={16} />}
+                        )}
                         {loading ? 'Generating...' : 'Generate Post'}
                     </button>
 
                     {postContent && (
                         <button className="btn-ghost" onClick={generatePost} disabled={loading}
                             style={{ opacity: loading ? 0.6 : 1 }}>
-                            <RefreshCw size={15} /> Regenerate
+                            Regenerate
                         </button>
                     )}
                 </div>
@@ -130,7 +142,7 @@ export default function GeneratePost() {
             {(postContent || loading) && (
                 <div className="card animate-fade-in" style={{ padding: '28px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-                        <h3 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#0F172A' }}>
+                        <h3 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 600, fontSize: '1rem', color: '#0F172A' }}>
                             Generated Post
                         </h3>
                         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
@@ -184,7 +196,7 @@ export default function GeneratePost() {
                         {/* Save Draft */}
                         <button id="save-draft-btn" className="btn-secondary" onClick={savePost} disabled={saving}
                             style={{ opacity: saving ? 0.75 : 1 }}>
-                            <Save size={15} /> {saving ? 'Saving...' : 'Save Draft'}
+                            {saving ? 'Saving...' : 'Save Draft'}
                         </button>
 
                         {/* Schedule Post */}
@@ -192,7 +204,7 @@ export default function GeneratePost() {
                             if (!postId) { toast.error('Please save the post first to get an ID'); return }
                             window.location.href = '/dashboard/scheduler?postId=' + postId
                         }}>
-                            <CalendarDays size={15} /> Schedule Post
+                            Schedule Post
                         </button>
 
                         {/* Post Now to LinkedIn */}
@@ -209,9 +221,9 @@ export default function GeneratePost() {
                                     : 'linear-gradient(135deg, #94A3B8, #64748B)',
                             }}
                         >
-                            {posting ? (
+                            {posting && (
                                 <RefreshCw size={15} style={{ animation: 'spin 0.8s linear infinite' }} />
-                            ) : <Linkedin size={15} />}
+                            )}
                             {posting ? 'Publishing...' : 'Post Now'}
                         </button>
                     </div>

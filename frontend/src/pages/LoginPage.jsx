@@ -53,146 +53,153 @@ export default function LoginPage() {
             setLoading(false)
         }
     }
-
     return (
-        <div style={{
-            minHeight: '100vh',
-            background: 'linear-gradient(160deg, #EFF6FF 0%, #F8FAFC 100%)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: 24,
-        }}>
-            <div style={{ width: '100%', maxWidth: 440 }}>
-                {/* Logo */}
-                <div style={{ textAlign: 'center', marginBottom: 36 }}>
-                    <div style={{
-                        width: 54, height: 54, borderRadius: 16,
-                        background: 'linear-gradient(135deg, #2563EB, #1D4ED8)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        margin: '0 auto 16px',
-                        boxShadow: '0 8px 24px rgba(37,99,235,0.3)',
-                    }}>
-                        <Linkedin size={26} color="white" />
+        <>
+            <style>{`
+                @keyframes smoothBg {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+                .animated-wrapper {
+                    background: linear-gradient(-45deg, #ffffff, #f4f8ff, #ebf4ff, #ffffff);
+                    background-size: 400% 400%;
+                    animation: smoothBg 15s ease infinite;
+                }
+                @keyframes spin { to { transform: rotate(360deg); } }
+            `}</style>
+            <div className="animated-wrapper" style={{
+                minHeight: '100vh',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                padding: 24,
+                fontFamily: 'Inter, sans-serif'
+            }}>
+                <div style={{ width: '100%', maxWidth: 440 }}>
+                    {/* Logo */}
+                    <div style={{ textAlign: 'center', marginBottom: 36 }}>
+                        <h1 style={{ fontFamily: '"Playfair Display", serif', fontWeight: 700, fontSize: '1.5rem', color: '#0F172A', marginBottom: 6 }}>
+                            {isSignup ? 'Create account' : 'Welcome back'}
+                        </h1>
+                        <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
+                            {isSignup ? 'Join LIPost-AI and start automating' : 'Sign in to your LIPost-AI account'}
+                        </p>
                     </div>
-                    <h1 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800, fontSize: '1.6rem', color: '#0F172A', marginBottom: 6 }}>
-                        {isSignup ? 'Create account' : 'Welcome back'}
-                    </h1>
-                    <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
-                        {isSignup ? 'Join LinkedAI and start automating' : 'Sign in to your LinkedAI account'}
-                    </p>
-                </div>
 
-                {/* Card */}
-                <div className="card animate-fade-in" style={{ padding: '36px 32px' }}>
-                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                        {/* Name (Signup only) */}
-                        {isSignup && (
+                    {/* Card */}
+                    <div className="card animate-fade-in" style={{ padding: '36px 32px', background: 'white', borderRadius: 24, border: '1px solid #F1F5F9', boxShadow: '0 10px 30px rgba(0,0,0,0.02)' }}>
+                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                            {/* Name (Signup only) */}
+                            {isSignup && (
+                                <div>
+                                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#374151', marginBottom: 7 }}>
+                                        Full Name
+                                    </label>
+                                    <div style={{ position: 'relative' }}>
+                                        <User size={16} color="#94A3B8" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
+                                        <input
+                                            id="name"
+                                            type="text"
+                                            className="input-field"
+                                            placeholder="John Doe"
+                                            value={form.name}
+                                            onChange={e => setForm({ ...form, name: e.target.value })}
+                                            style={{ paddingLeft: 40 }}
+                                            autoComplete="name"
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Email */}
                             <div>
                                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#374151', marginBottom: 7 }}>
-                                    Full Name
+                                    Email address
                                 </label>
                                 <div style={{ position: 'relative' }}>
-                                    <User size={16} color="#94A3B8" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
+                                    <Mail size={16} color="#94A3B8" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
                                     <input
-                                        id="name"
-                                        type="text"
+                                        id="email"
+                                        type="email"
                                         className="input-field"
-                                        placeholder="John Doe"
-                                        value={form.name}
-                                        onChange={e => setForm({ ...form, name: e.target.value })}
+                                        placeholder="you@company.com"
+                                        value={form.email}
+                                        onChange={e => setForm({ ...form, email: e.target.value })}
                                         style={{ paddingLeft: 40 }}
-                                        autoComplete="name"
+                                        autoComplete="email"
                                     />
                                 </div>
                             </div>
-                        )}
 
-                        {/* Email */}
-                        <div>
-                            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#374151', marginBottom: 7 }}>
-                                Email address
-                            </label>
-                            <div style={{ position: 'relative' }}>
-                                <Mail size={16} color="#94A3B8" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
-                                <input
-                                    id="email"
-                                    type="email"
-                                    className="input-field"
-                                    placeholder="you@company.com"
-                                    value={form.email}
-                                    onChange={e => setForm({ ...form, email: e.target.value })}
-                                    style={{ paddingLeft: 40 }}
-                                    autoComplete="email"
-                                />
+                            {/* Password */}
+                            <div>
+                                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#374151', marginBottom: 7 }}>
+                                    Password {isSignup && <span style={{ color: '#94A3B8', fontWeight: 400 }}>(min. 8 characters)</span>}
+                                </label>
+                                <div style={{ position: 'relative' }}>
+                                    <Lock size={16} color="#94A3B8" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
+                                    <input
+                                        id="password"
+                                        type={showPw ? 'text' : 'password'}
+                                        className="input-field"
+                                        placeholder="••••••••"
+                                        value={form.password}
+                                        onChange={e => setForm({ ...form, password: e.target.value })}
+                                        style={{ paddingLeft: 40, paddingRight: 40 }}
+                                        autoComplete={isSignup ? 'new-password' : 'current-password'}
+                                    />
+                                    <button type="button" onClick={() => setShowPw(!showPw)} style={{
+                                        position: 'absolute', right: 13, top: '50%', transform: 'translateY(-50%)',
+                                        background: 'none', border: 'none', cursor: 'pointer', color: '#94A3B8',
+                                    }}>
+                                        {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Password */}
-                        <div>
-                            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#374151', marginBottom: 7 }}>
-                                Password {isSignup && <span style={{ color: '#94A3B8', fontWeight: 400 }}>(min. 8 characters)</span>}
-                            </label>
-                            <div style={{ position: 'relative' }}>
-                                <Lock size={16} color="#94A3B8" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
-                                <input
-                                    id="password"
-                                    type={showPw ? 'text' : 'password'}
-                                    className="input-field"
-                                    placeholder="••••••••"
-                                    value={form.password}
-                                    onChange={e => setForm({ ...form, password: e.target.value })}
-                                    style={{ paddingLeft: 40, paddingRight: 40 }}
-                                    autoComplete={isSignup ? 'new-password' : 'current-password'}
-                                />
-                                <button type="button" onClick={() => setShowPw(!showPw)} style={{
-                                    position: 'absolute', right: 13, top: '50%', transform: 'translateY(-50%)',
-                                    background: 'none', border: 'none', cursor: 'pointer', color: '#94A3B8',
-                                }}>
-                                    {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Submit */}
-                        <button
-                            id="auth-submit-btn"
-                            type="submit"
-                            className="btn-primary"
-                            disabled={loading}
-                            style={{
-                                width: '100%', justifyContent: 'center', padding: '12px', marginTop: 4, fontSize: '0.95rem',
-                                opacity: loading ? 0.75 : 1, cursor: loading ? 'not-allowed' : 'pointer'
-                            }}
-                        >
-                            {loading ? (
-                                <svg width="18" height="18" viewBox="0 0 24 24" style={{ animation: 'spin 0.8s linear infinite' }}>
-                                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="3" fill="none" strokeDasharray="31.4" strokeDashoffset="10" />
-                                </svg>
-                            ) : <>{isSignup ? 'Create Account' : 'Sign In'} <ArrowRight size={16} /></>}
-                        </button>
-                    </form>
-
-                    <div style={{ textAlign: 'center', marginTop: 24 }}>
-                        <p style={{ fontSize: '0.85rem', color: '#64748B' }}>
-                            {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
+                            {/* Submit */}
                             <button
-                                onClick={() => {
-                                    setForm({ name: '', email: '', password: '' })
-                                    navigate(isSignup ? '/login?mode=login' : '/login?mode=signup')
+                                id="auth-submit-btn"
+                                type="submit"
+                                className="btn-primary"
+                                disabled={loading}
+                                style={{
+                                    width: '100%', justifyContent: 'center', padding: '12px', marginTop: 4, fontSize: '0.95rem',
+                                    opacity: loading ? 0.75 : 1, cursor: loading ? 'not-allowed' : 'pointer',
+                                    background: '#2563EB', boxShadow: '0 4px 12px rgba(37,99,235,0.15)', border: 'none', color: 'white',
+                                    borderRadius: 12, fontWeight: 600
                                 }}
-                                style={{ background: 'none', border: 'none', color: '#2563EB', fontWeight: 600, cursor: 'pointer', padding: 0 }}
                             >
-                                {isSignup ? 'Sign in' : 'Sign up'}
+                                {loading ? (
+                                    <svg width="18" height="18" viewBox="0 0 24 24" style={{ animation: 'spin 0.8s linear infinite' }}>
+                                        <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="3" fill="none" strokeDasharray="31.4" strokeDashoffset="10" />
+                                    </svg>
+                                ) : <>{isSignup ? 'Create Account' : 'Sign In'} <ArrowRight size={16} style={{ marginLeft: 8 }} /></>}
                             </button>
-                        </p>
+                        </form>
+
+                        <div style={{ textAlign: 'center', marginTop: 24 }}>
+                            <p style={{ fontSize: '0.85rem', color: '#64748B' }}>
+                                {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
+                                <button
+                                    onClick={() => {
+                                        setForm({ name: '', email: '', password: '' })
+                                        navigate(isSignup ? '/login?mode=login' : '/login?mode=signup')
+                                    }}
+                                    style={{ background: 'none', border: 'none', color: '#2563EB', fontWeight: 600, cursor: 'pointer', padding: 0 }}
+                                >
+                                    {isSignup ? 'Sign in' : 'Sign up'}
+                                </button>
+                            </p>
+                        </div>
                     </div>
+
+                    <p style={{ textAlign: 'center', marginTop: 24, fontSize: '0.82rem', color: '#94A3B8' }}>
+                        By {isSignup ? 'creating an account' : 'signing in'}, you agree to our{' '}
+                        <span onClick={() => navigate('/terms')} style={{ color: '#64748B', cursor: 'pointer', textDecoration: 'underline' }}>Terms of Service</span> and{' '}
+                        <span onClick={() => navigate('/privacy')} style={{ color: '#64748B', cursor: 'pointer', textDecoration: 'underline' }}>Privacy Policy</span>.
+                    </p>
                 </div>
-
-                <p style={{ textAlign: 'center', marginTop: 20, fontSize: '0.82rem', color: '#94A3B8' }}>
-                    By {isSignup ? 'creating an account' : 'signing in'}, you agree to our Terms of Service and Privacy Policy.
-                </p>
             </div>
-
-            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-        </div>
+        </>
     )
 }

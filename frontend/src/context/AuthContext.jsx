@@ -37,8 +37,18 @@ export function AuthProvider({ children }) {
         navigate('/login', { replace: true })
     }, [navigate])
 
+    /** Allows components to update fields in user context */
+    const updateUser = useCallback((updatedFields) => {
+        setUser(prev => {
+            const current = prev || loadUser() || {}
+            const updated = { ...current, ...updatedFields }
+            localStorage.setItem('user', JSON.stringify(updated))
+            return updated
+        })
+    }, [])
+
     return (
-        <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+        <AuthContext.Provider value={{ user, login, logout, updateUser, isAuthenticated: !!user }}>
             {children}
         </AuthContext.Provider>
     )

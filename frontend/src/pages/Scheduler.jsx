@@ -65,7 +65,7 @@ export default function Scheduler() {
                 {/* Schedule Form */}
                 <div className="card" style={{ padding: '28px' }}>
                     <div style={{ marginBottom: 24 }}>
-                        <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1.15rem', color: '#0F172A', marginBottom: 6 }}>
+                        <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1.15rem', color: '#0F172A', marginBottom: 6 }}>
                             Schedule a Post
                         </h2>
                         <p style={{ color: '#64748B', fontSize: '0.875rem' }}>
@@ -144,10 +144,10 @@ export default function Scheduler() {
                         <button id="schedule-btn" type="submit" className="btn-primary" disabled={loading}
                             style={{ width: '100%', justifyContent: 'center', padding: 12, opacity: loading ? 0.75 : 1 }}>
                             {success
-                                ? <><CheckCircle size={16} /> Scheduled!</>
+                                ? 'Scheduled!'
                                 : loading
                                     ? 'Scheduling...'
-                                    : <><Send size={16} /> Schedule Post</>
+                                    : 'Schedule Post'
                             }
                         </button>
                     </form>
@@ -156,7 +156,7 @@ export default function Scheduler() {
                 {/* Upcoming */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                     <div className="card" style={{ padding: '24px' }}>
-                        <h3 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#0F172A', marginBottom: 18 }}>
+                        <h3 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 600, fontSize: '1rem', color: '#0F172A', marginBottom: 18 }}>
                             Upcoming Scheduled Posts
                         </h3>
 
@@ -202,7 +202,7 @@ export default function Scheduler() {
                     {/* Content Calendar summary */}
                     <div className="card" style={{ padding: '24px', background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)' }}>
                         <CalendarDays size={28} color="rgba(255,255,255,0.8)" style={{ marginBottom: 12 }} />
-                        <h3 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1rem', color: 'white', marginBottom: 8 }}>
+                        <h3 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 600, fontSize: '1rem', color: 'white', marginBottom: 8 }}>
                             Content Calendar
                         </h3>
                         <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, marginBottom: 16 }}>

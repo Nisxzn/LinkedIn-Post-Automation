@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
-import { User, Bell, Shield, Save, Linkedin } from 'lucide-react'
+import { User, Bell, Shield, Save } from 'lucide-react'
+import LinkedInIcon from '../components/common/LinkedInIcon'
 import api from '../api/axios'
 import toast from 'react-hot-toast'
+import { useAuth } from '../context/AuthContext'
 
 function ZapIcon({ size = 16, color = 'currentColor' }) {
     return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
@@ -9,7 +11,7 @@ function ZapIcon({ size = 16, color = 'currentColor' }) {
 
 const tabs = [
     { id: 'profile', label: 'Profile', icon: User },
-    { id: 'linkedin', label: 'LinkedIn', icon: Linkedin },
+    { id: 'linkedin', label: 'LinkedIn', icon: LinkedInIcon },
     { id: 'automation', label: 'Automation', icon: ZapIcon },
     { id: 'notifs', label: 'Notifications', icon: Bell },
     { id: 'security', label: 'Security', icon: Shield },
@@ -19,7 +21,8 @@ export default function Settings() {
     const [activeTab, setActiveTab] = useState('profile')
 
     // ── Profile ───────────────────────────────────────────────────────────────
-    const cachedUser = JSON.parse(localStorage.getItem('user') ?? '{}')
+    const { user, updateUser } = useAuth()
+    const cachedUser = user || {}
     const [profile, setProfile] = useState({
         name: cachedUser.name ?? '',
         email: cachedUser.email ?? '',
@@ -56,12 +59,11 @@ export default function Settings() {
         api.get('/auth/me').then(({ data }) => {
             setProfile(prev => ({ ...prev, name: data.name, email: data.email }))
             setLinkedinConnected(data.linkedin_connected)
-            localStorage.setItem('user', JSON.stringify({
-                ...cachedUser,
+            updateUser({
                 name: data.name,
                 email: data.email,
                 linkedin_connected: data.linkedin_connected,
-            }))
+            })
         }).catch(() => { })
     }, [])
 
@@ -116,8 +118,7 @@ export default function Settings() {
         try {
             await api.post('/linkedin/disconnect')
             setLinkedinConnected(false)
-            const user = JSON.parse(localStorage.getItem('user') ?? '{}')
-            localStorage.setItem('user', JSON.stringify({ ...user, linkedin_connected: false }))
+            updateUser({ linkedin_connected: false })
             toast.success('LinkedIn account disconnected.')
         } catch (err) {
             toast.error(err.response?.data?.detail ?? 'Failed to disconnect LinkedIn.')
@@ -169,7 +170,7 @@ export default function Settings() {
                     {/* ── Profile Tab ────────────────────────────────────────────── */}
                     {activeTab === 'profile' && (
                         <div>
-                            <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>
+                            <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>
                                 Profile Settings
                             </h2>
                             <p style={{ color: '#64748B', fontSize: '0.875rem', marginBottom: 28 }}>Manage your professional identity.</p>
@@ -188,7 +189,7 @@ export default function Settings() {
                                     <textarea className="input-field" rows={4} value={profile.bio} onChange={e => setProfile({ ...profile, bio: e.target.value })} />
                                 </div>
                                 <button className="btn-primary" onClick={saveProfile} style={{ marginTop: 8, width: 'fit-content' }}>
-                                    {saving ? 'Saving...' : <><Save size={16} /> Save Changes</>}
+                                    {saving ? 'Saving...' : 'Save Changes'}
                                 </button>
                             </div>
                         </div>
@@ -197,7 +198,7 @@ export default function Settings() {
                     {/* ── LinkedIn Tab ───────────────────────────────────────────── */}
                     {activeTab === 'linkedin' && (
                         <div>
-                            <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>
+                            <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>
                                 LinkedIn Integration
                             </h2>
                             <p style={{ color: '#64748B', fontSize: '0.875rem', marginBottom: 28 }}>
@@ -221,7 +222,7 @@ export default function Settings() {
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     flexShrink: 0,
                                 }}>
-                                    <Linkedin size={22} color="white" />
+                                    <LinkedInIcon size={22} color="white" />
                                 </div>
                                 <div style={{ flex: 1 }}>
                                     <p style={{ fontWeight: 700, color: '#0F172A', marginBottom: 4, fontSize: '0.95rem' }}>
@@ -248,7 +249,6 @@ export default function Settings() {
                                         disabled={linkedinLoading}
                                         style={{ opacity: linkedinLoading ? 0.75 : 1 }}
                                     >
-                                        <Linkedin size={16} />
                                         {linkedinLoading ? 'Redirecting to LinkedIn…' : 'Connect LinkedIn'}
                                     </button>
                                 ) : (
@@ -268,7 +268,6 @@ export default function Settings() {
                                         onMouseEnter={e => { if (!linkedinDisconnecting) e.currentTarget.style.background = '#FEE2E2' }}
                                         onMouseLeave={e => { e.currentTarget.style.background = '#FFF5F5' }}
                                     >
-                                        <Linkedin size={16} />
                                         {linkedinDisconnecting ? 'Disconnecting…' : 'Disconnect LinkedIn'}
                                     </button>
                                 )}
@@ -295,7 +294,7 @@ export default function Settings() {
                     {/* ── Automation Tab ─────────────────────────────────────────── */}
                     {activeTab === 'automation' && (
                         <div>
-                            <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>
+                            <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>
                                 Automation Control
                             </h2>
                             <p style={{ color: '#64748B', fontSize: '0.875rem', marginBottom: 28 }}>Configure AI discovery and scheduling.</p>
@@ -363,7 +362,7 @@ export default function Settings() {
                     {/* ── Notifications Tab ──────────────────────────────────────── */}
                     {activeTab === 'notifs' && (
                         <div>
-                            <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>Notifications</h2>
+                            <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>Notifications</h2>
                             <p style={{ color: '#64748B', fontSize: '0.875rem', marginBottom: 28 }}>Stay updated on your automation's performance.</p>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                                 {[
@@ -377,8 +376,11 @@ export default function Settings() {
                                             <p style={{ fontSize: '0.75rem', color: '#64748B' }}>{desc}</p>
                                         </div>
                                         <button onClick={() => setNotifs({ ...notifs, [key]: !notifs[key] })} style={{
-                                            width: 48, height: 26, borderRadius: 99, background: notifs[key] ? '#2563EB' : '#E2E8F0', border: 'none', cursor: 'pointer', transition: '0.3s',
-                                        }} />
+                                            width: 52, height: 28, borderRadius: 99, padding: 4, transition: '0.3s', cursor: 'pointer',
+                                            background: notifs[key] ? '#2563EB' : '#CBD5E1', border: 'none', position: 'relative'
+                                        }}>
+                                            <div style={{ width: 20, height: 20, background: 'white', borderRadius: '50%', transition: '0.3s', transform: `translateX(${notifs[key] ? '24px' : '0px'})`, boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }} />
+                                        </button>
                                     </div>
                                 ))}
                             </div>
@@ -388,7 +390,7 @@ export default function Settings() {
                     {/* ── Security Tab ───────────────────────────────────────────── */}
                     {activeTab === 'security' && (
                         <div>
-                            <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>Account Security</h2>
+                            <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1.2rem', color: '#0F172A', marginBottom: 8 }}>Account Security</h2>
                             <p style={{ color: '#64748B', fontSize: '0.875rem', marginBottom: 28 }}>Secure your automation dashboard.</p>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
                                 <div>
@@ -400,7 +402,7 @@ export default function Settings() {
                                     <input className="input-field" type="password" placeholder="••••••••" />
                                 </div>
                                 <button className="btn-primary" style={{ width: 'fit-content' }}>
-                                    <Shield size={15} /> Update Password
+                                    Update Password
                                 </button>
                             </div>
                         </div>

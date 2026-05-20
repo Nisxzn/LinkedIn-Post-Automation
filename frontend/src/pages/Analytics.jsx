@@ -77,7 +77,7 @@ export default function Analytics() {
             <div className="card" style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
                 <TrendingUp size={20} color="#2563EB" />
                 <div style={{ flex: 1 }}>
-                    <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#0F172A' }}>
+                    <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1rem', color: '#0F172A' }}>
                         Post Analytics
                     </h2>
                     <p style={{ fontSize: '0.8rem', color: '#64748B' }}>Enter a Post ID or LinkedIn Post URL to load real analytics data.</p>
@@ -97,7 +97,7 @@ export default function Analytics() {
                         />
                     </div>
                     <button className="btn-primary" onClick={fetchAnalytics} disabled={loading} style={{ padding: '10px 18px', opacity: loading ? 0.75 : 1 }}>
-                        <Search size={15} /> {loading ? 'Loading...' : 'Load'}
+                        {loading ? 'Loading...' : 'Load'}
                     </button>
                 </div>
             </div>
@@ -106,7 +106,7 @@ export default function Analytics() {
             {!loaded && !loading && (
                 <div className="card" style={{ padding: '60px 24px', textAlign: 'center' }}>
                     <BarChart2 size={40} color="#CBD5E1" style={{ marginBottom: 16 }} />
-                    <h3 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#94A3B8', marginBottom: 8 }}>
+                    <h3 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 600, fontSize: '1rem', color: '#94A3B8', marginBottom: 8 }}>
                         No data loaded yet
                     </h3>
                     <p style={{ fontSize: '0.875rem', color: '#CBD5E1' }}>
@@ -126,7 +126,7 @@ export default function Analytics() {
                                 </div>
                                 <div>
                                     <p style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>{label}</p>
-                                    <p style={{ fontFamily: 'Poppins, sans-serif', fontSize: '1.6rem', fontWeight: 800, color: '#0F172A', lineHeight: 1.2 }}>
+                                    <p style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontSize: '1.6rem', fontWeight: 700, color: '#0F172A', lineHeight: 1.2 }}>
                                         {summary[key]?.toLocaleString()}
                                     </p>
                                 </div>
@@ -136,7 +136,7 @@ export default function Analytics() {
 
                     {/* Area Chart — Views */}
                     <div className="card" style={{ padding: '24px' }}>
-                        <h3 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#0F172A', marginBottom: 20 }}>
+                        <h3 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 600, fontSize: '1rem', color: '#0F172A', marginBottom: 20 }}>
                             Views Over Time
                         </h3>
                         <ResponsiveContainer width="100%" height={240}>
@@ -158,7 +158,7 @@ export default function Analytics() {
 
                     {/* Bar Chart — Engagement */}
                     <div className="card" style={{ padding: '24px' }}>
-                        <h3 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#0F172A', marginBottom: 20 }}>
+                        <h3 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 600, fontSize: '1rem', color: '#0F172A', marginBottom: 20 }}>
                             Engagement Breakdown
                         </h3>
                         <ResponsiveContainer width="100%" height={240}>

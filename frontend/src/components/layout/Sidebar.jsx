@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom'
 import {
-    LayoutDashboard, Sparkles, CalendarDays, BarChart3, Settings, LogOut, Linkedin,
+    LayoutDashboard, Sparkles, CalendarDays, BarChart3, Settings, LogOut,
     PanelLeftClose, PanelLeftOpen
 } from 'lucide-react'
+import LinkedInIcon from '../common/LinkedInIcon'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '../../context/AuthContext'
 
@@ -24,29 +25,21 @@ export default function Sidebar({ collapsed, setCollapsed }) {
             className="sidebar"
             style={{
                 height: '100vh',
-                background: '#18181B',
+                background: '#FFFFFF',
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'fixed',
                 left: 0,
                 top: 0,
                 zIndex: 40,
-                borderRight: '1px solid #27272A',
+                borderRight: '1px solid #F1F5F9',
                 overflow: 'hidden'
             }}
         >
             {/* Logo */}
-            <div style={{ padding: '16px', borderBottom: '1px solid #27272A', height: 64, display: 'flex', alignItems: 'center' }}>
+            <div style={{ padding: '16px', borderBottom: '1px solid #F1F5F9', height: 64, display: 'flex', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <div style={{
-                        width: 36, height: 36, borderRadius: 10,
-                        background: 'linear-gradient(135deg, #2563EB, #1D4ED8)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        flexShrink: 0,
-                        boxShadow: '0 2px 8px rgba(37, 99, 235, 0.2)'
-                    }}>
-                        <Linkedin size={18} color="white" strokeWidth={2.5} />
-                    </div>
+                    <LinkedInIcon size={32} />
                     <AnimatePresence>
                         {!collapsed && (
                             <motion.div
@@ -56,10 +49,10 @@ export default function Sidebar({ collapsed, setCollapsed }) {
                                 transition={{ duration: 0.2 }}
                                 style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}
                             >
-                                <div style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '0.9rem', color: '#FFFFFF', letterSpacing: '-0.02em' }}>
-                                    LINKEDAI
+                                <div style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '0.95rem', color: '#0F172A', letterSpacing: '0.02em' }}>
+                                    POSTLY-AI
                                 </div>
-                                <div style={{ fontSize: '10px', color: '#71717A', marginTop: -2, fontWeight: 500 }}>AI AUTOMATION</div>
+                                <div style={{ fontSize: '10px', color: '#94A3B8', marginTop: -2, fontWeight: 600, letterSpacing: '0.05em' }}>AI AUTOMATION</div>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -68,7 +61,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
 
             {/* Nav */}
             <nav style={{ flex: 1, padding: '12px', display: 'flex', flexDirection: 'column', gap: 4, overflowX: 'hidden' }}>
-                {!collapsed && <p style={{ padding: '8px 12px 6px', fontSize: '10px', fontWeight: 600, color: '#52525B', textTransform: 'uppercase', letterSpacing: '0.05em' }}>MAIN MENU</p>}
+                {!collapsed && <p style={{ padding: '8px 12px 6px', fontSize: '10px', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>MAIN MENU</p>}
                 {navItems.map(({ to, icon: Icon, label }) => (
                     <NavLink
                         key={to}
@@ -78,27 +71,27 @@ export default function Sidebar({ collapsed, setCollapsed }) {
                         style={({ isActive }) => ({
                             display: 'flex', alignItems: 'center', gap: 12,
                             padding: '10px 12px', borderRadius: 8,
-                            textDecoration: 'none', fontSize: '13px', fontWeight: 500,
+                            textDecoration: 'none', fontSize: '13px', fontWeight: 600,
                             transition: 'all 0.15s ease',
-                            background: isActive ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-                            color: isActive ? '#FFFFFF' : '#A1A1AA',
+                            background: isActive ? 'rgba(37, 99, 235, 0.06)' : 'transparent',
+                            color: isActive ? '#2563EB' : '#64748B',
                         })}
                         onMouseEnter={e => {
                             if (!e.currentTarget.classList.contains('active')) {
-                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                                e.currentTarget.style.color = '#FFFFFF';
+                                e.currentTarget.style.background = '#F8FAFC';
+                                e.currentTarget.style.color = '#0F172A';
                             }
                         }}
                         onMouseLeave={e => {
                             if (!e.currentTarget.getAttribute('aria-current')) {
                                 e.currentTarget.style.background = 'transparent';
-                                e.currentTarget.style.color = '#A1A1AA';
+                                e.currentTarget.style.color = '#64748B';
                             }
                         }}
                     >
                         {({ isActive }) => (
                             <>
-                                <Icon size={18} strokeWidth={isActive ? 2 : 1.5} className="flex-shrink-0" />
+                                <Icon size={18} strokeWidth={isActive ? 2 : 1.5} className="flex-shrink-0" style={{ color: isActive ? '#2563EB' : '#94A3B8' }} />
                                 <AnimatePresence>
                                     {!collapsed && (
                                         <motion.span
@@ -119,23 +112,23 @@ export default function Sidebar({ collapsed, setCollapsed }) {
             </nav>
 
             {/* Footer */}
-            <div style={{ padding: '12px', borderTop: '1px solid #27272A' }}>
+            <div style={{ padding: '12px', borderTop: '1px solid #F1F5F9' }}>
                 <button
                     onClick={() => setCollapsed(!collapsed)}
                     style={{
                         display: 'flex', alignItems: 'center', gap: 12,
                         padding: '10px 12px', borderRadius: 8, width: '100%',
                         background: 'transparent', border: 'none', cursor: 'pointer',
-                        fontSize: '13px', fontWeight: 500, color: '#A1A1AA',
+                        fontSize: '13px', fontWeight: 600, color: '#64748B',
                         transition: 'all 0.15s ease',
                     }}
                     onMouseEnter={e => {
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                        e.currentTarget.style.color = '#FFFFFF';
+                        e.currentTarget.style.background = '#F8FAFC';
+                        e.currentTarget.style.color = '#0F172A';
                     }}
                     onMouseLeave={e => {
                         e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = '#A1A1AA';
+                        e.currentTarget.style.color = '#64748B';
                     }}
                     title={collapsed ? 'Expand' : 'Collapse'}
                 >
@@ -147,7 +140,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
                                 animate={{ opacity: 1, width: 'auto' }}
                                 exit={{ opacity: 0, width: 0 }}
                                 className="overflow-hidden whitespace-nowrap"
-                                style={{ fontWeight: 500 }}
+                                style={{ fontWeight: 600 }}
                             >
                                 Collapse Sidebar
                             </motion.span>
@@ -160,10 +153,10 @@ export default function Sidebar({ collapsed, setCollapsed }) {
                         display: 'flex', alignItems: 'center', gap: 12,
                         padding: '10px 12px', borderRadius: 8, width: '100%',
                         background: 'transparent', border: 'none', cursor: 'pointer',
-                        fontSize: '13px', fontWeight: 500, color: '#EF4444',
+                        fontSize: '13px', fontWeight: 600, color: '#EF4444',
                         transition: 'all 0.15s ease',
                     }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(239, 68, 68, 0.06)'}
                         onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                     >
                         <LogOut size={18} />

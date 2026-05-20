@@ -22,9 +22,9 @@ import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 
 const statCards = [
-    { label: 'Total Content Generated', key: 'total_posts', icon: Layers, color: '#0F172A', bg: 'rgba(15, 23, 42, 0.05)' },
-    { label: 'Pipeline Schedule', key: 'scheduled', icon: Calendar, color: '#0F172A', bg: 'rgba(15, 23, 42, 0.05)' },
-    { label: 'Monthly Growth', key: 'this_month', icon: Zap, color: '#0F172A', bg: 'rgba(15, 23, 42, 0.05)' },
+    { label: 'Total Content Generated', key: 'total_posts', icon: Layers, color: '#2563EB', bg: 'linear-gradient(135deg, rgba(37,99,235,0.06), rgba(37,99,235,0.12))' },
+    { label: 'Pipeline Schedule', key: 'scheduled', icon: Calendar, color: '#7C3AED', bg: 'linear-gradient(135deg, rgba(124,58,237,0.06), rgba(124,58,237,0.12))' },
+    { label: 'Monthly Growth', key: 'this_month', icon: Zap, color: '#10B981', bg: 'linear-gradient(135deg, rgba(16,185,129,0.06), rgba(16,185,129,0.12))' },
 ]
 
 const statusBadge = (s) => {
@@ -79,7 +79,7 @@ export default function Dashboard() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                     <div>
-                        <h2 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800, fontSize: '1.4rem', color: '#0F172A' }}>
+                        <h2 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 700, fontSize: '1.4rem', color: '#0F172A' }}>
                             {greeting()}, {user?.name ?? ''}!
                         </h2>
                         <p style={{ color: '#64748B', fontSize: '0.875rem', marginTop: 4 }}>
@@ -88,7 +88,7 @@ export default function Dashboard() {
                     </div>
                 </div>
                 <button className="btn-primary" id="new-post-btn" onClick={() => navigate('/dashboard/generate')}>
-                    <Sparkles size={16} /> Generate New Post
+                    Generate New Post
                 </button>
             </div>
 
@@ -101,7 +101,7 @@ export default function Dashboard() {
                                 <p style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 10 }}>
                                     {label}
                                 </p>
-                                <p style={{ fontFamily: 'Poppins, sans-serif', fontSize: '2rem', fontWeight: 800, color: '#0F172A', lineHeight: 1 }}>
+                                <p style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontSize: '2rem', fontWeight: 700, color: '#0F172A', lineHeight: 1 }}>
                                     {loading ? '—' : (stats?.[key] ?? 0)}
                                 </p>
                             </div>
@@ -153,7 +153,7 @@ export default function Dashboard() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                         <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#2563EB' }} />
-                        <h3 style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#0F172A' }}>
+                        <h3 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontWeight: 600, fontSize: '1rem', color: '#0F172A' }}>
                             Recent Transactions
                         </h3>
                     </div>

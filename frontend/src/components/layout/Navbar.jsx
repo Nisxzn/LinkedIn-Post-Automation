@@ -40,7 +40,7 @@ export default function Navbar({ title }) {
         }}>
             {/* Page title */}
             <div style={{ flex: 1 }}>
-                <h1 style={{ fontFamily: 'Poppins, sans-serif', fontSize: '1.1rem', fontWeight: 700, color: '#0F172A' }}>
+                <h1 style={{ fontFamily: "'MADE Okine Sans PERSONAL USE', 'Space Grotesk', 'Outfit', sans-serif", fontSize: '1.2rem', fontWeight: 750, color: '#0F172A' }}>
                     {title}
                 </h1>
             </div>
